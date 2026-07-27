@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalStream AI | Scale Your Video RPM Overnight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-[#0B0F19] text-slate-100 min-h-screen flex flex-col antialiased">
+    <header class="border-b border-slate-800 bg-[#0B0F19]/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 bg-indigo-500 rounded-full animate-pulse"></span>
+                <span class="font-bold text-lg tracking-tight text-white">GlobalStream <span class="text-indigo-400">AI</span></span>
+            </div>
+            <span class="text-xs bg-indigo-500/10 text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20 font-medium">Live RPM Utility</span>
+        </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow w-full grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div class="lg:col-span-2 bg-[#161D30] border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-white mb-3">AI Video Localization & RPM Calculator</h1>
+            <p class="text-slate-400 text-sm mb-8">Calculate how much extra monthly revenue you unlock by auto-dubbing your content into Spanish, German, and Japanese markets.</p>
+            <div class="space-y-6">
+                <div>
+                    <div class="flex justify-between text-sm font-medium mb-2">
+                        <label for="views" class="text-slate-300">Current Monthly Views</label>
+                        <span id="views-val" class="text-indigo-400 font-bold">250,000</span>
+                    </div>
+                    <input id="views" type="range" min="10000" max="2000000" step="10000" value="250000" class="w-full accent-indigo-500 cursor-pointer bg-slate-800 rounded-lg h-2">
+                </div>
+                <div>
+                    <div class="flex justify-between text-sm font-medium mb-2">
+                        <label for="rpm" class="text-slate-300">Current Average RPM ($)</label>
+                        <span id="rpm-val" class="text-indigo-400 font-bold">$3.50</span>
+                    </div>
+                    <input id="rpm" type="range" min="1.00" max="15.00" step="0.25" value="3.50" class="w-full accent-indigo-500 cursor-pointer bg-slate-800 rounded-lg h-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-3">Target Expansion Languages</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 p-3 rounded-xl cursor-pointer hover:border-indigo-500/50 transition">
+                            <input type="checkbox" checked class="accent-indigo-500 lang-toggle" value="1.8" onchange="calculateRPM()">
+                            <span class="text-xs font-semibold text-slate-200">Spanish</span>
+                        </label>
+                        <label class="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 p-3 rounded-xl cursor-pointer hover:border-indigo-500/50 transition">
+                            <input type="checkbox" checked class="accent-indigo-500 lang-toggle" value="2.2" onchange="calculateRPM()">
+                            <span class="text-xs font-semibold text-slate-200">German</span>
+                        </label>
+                        <label class="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 p-3 rounded-xl cursor-pointer hover:border-indigo-500/50 transition">
+                            <input type="checkbox" class="accent-indigo-500 lang-toggle" value="2.5" onchange="calculateRPM()">
+                            <span class="text-xs font-semibold text-slate-200">Japanese</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gradient-to-b from-[#161D30] to-[#0B0F19] border border-slate-800 rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-2xl">
+            <div>
+                <h2 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-4">Estimated Additional Revenue</h2>
+                <div class="text-4xl font-extrabold text-white mb-2" id="extra-revenue">+$1,487.50</div>
+                <p class="text-xs text-indigo-400 font-medium mb-6">Based on cross-border audience expansion multipliers</p>
+                <div class="space-y-3 text-sm text-slate-300 border-t border-slate-800 pt-4 mb-6">
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Projected New RPM</span>
+                        <span class="font-semibold text-white" id="new-rpm">$9.45</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-400">Localization Speed</span>
+                        <span class="font-semibold text-indigo-400">&lt; 15 mins/video</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+                <p class="text-xs font-semibold text-slate-200 mb-2">Get the AI Dubbing Setup Checklist</p>
+                <form onsubmit="handleLead(event)" class="space-y-2">
+                    <input type="email" placeholder="Enter your email..." required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-lg text-xs transition shadow-lg cursor-pointer">Download Free Guide</button>
+                </form>
+                <div id="success-banner" class="hidden text-indigo-400 text-xs mt-2 text-center font-medium">Checklist sent successfully!</div>
+            </div>
+        </div>
+    </main>
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        Engineered for rapid asset deployment. Recommended AI Tools: <a href="https://elevenlabs.io" target="_blank" class="text-indigo-400 hover:underline">ElevenLabs</a> &amp; <a href="https://heygen.com" target="_blank" class="text-indigo-400 hover:underline">HeyGen</a>.
+    </footer>
+    <script>
+        const viewsInput = document.getElementById('views');
+        const rpmInput = document.getElementById('rpm');
+        const viewsVal = document.getElementById('views-val');
+        const rpmVal = document.getElementById('rpm-val');
+        const extraRevenue = document.getElementById('extra-revenue');
+        const newRpmDisplay = document.getElementById('new-rpm');
+        function calculateRPM() {
+            const views = parseInt(viewsInput.value);
+            const baseRpm = parseFloat(rpmInput.value);
+            viewsVal.textContent = views.toLocaleString();
+            rpmVal.textContent = '$' + baseRpm.toFixed(2);
+            let multiplier = 1.0;
+            document.querySelectorAll('.lang-toggle:checked').forEach(cb => {
+                multiplier += parseFloat(cb.value) * 0.4;
+            });
+            const calculatedNewRpm = baseRpm * multiplier;
+            const currentMonthlyRev = (views / 1000) * baseRpm;
+            const newMonthlyRev = (views / 1000) * calculatedNewRpm;
+            const extra = newMonthlyRev - currentMonthlyRev;
+            extraRevenue.textContent = '+$' + extra.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            newRpmDisplay.textContent = '$' + calculatedNewRpm.toFixed(2);
+        }
+        viewsInput.addEventListener('input', calculateRPM);
+        rpmInput.addEventListener('input', calculateRPM);
+        function handleLead(e) {
+            e.preventDefault();
+            document.getElementById('success-banner').classList.remove('hidden');
+            e.target.reset();
+        }
+        calculateRPM();
+    </script>
+</body>
+</html>
